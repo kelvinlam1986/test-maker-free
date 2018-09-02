@@ -9,6 +9,30 @@ namespace TestMakerFreeApp.Controllers
     [Route("api/[controller]")]
     public class AnswerController : Controller
     {
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPost]
+        public IActionResult Post(AnswerViewModel question)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody]AnswerViewModel question)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         [Route("All/{questionId}")]
         public IActionResult All(int questionId)
         {

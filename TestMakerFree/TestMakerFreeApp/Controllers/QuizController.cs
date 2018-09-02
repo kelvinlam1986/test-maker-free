@@ -10,7 +10,7 @@ namespace TestMakerFreeApp.Controllers
     [Route("api/[controller]")]
     public class QuizController : Controller
     {
-        [Route("{id}")]
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             var v = new QuizViewModel
@@ -27,6 +27,24 @@ namespace TestMakerFreeApp.Controllers
               {
                   Formatting = Formatting.Indented
               });
+        }
+
+        [HttpPost]
+        public IActionResult Post(QuizViewModel quiz)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody]QuizViewModel quiz)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            throw new NotImplementedException();
         }
 
         [Route("Latest/{num}")]
