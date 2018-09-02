@@ -10,6 +10,25 @@ namespace TestMakerFreeApp.Controllers
     [Route("api/[controller]")]
     public class QuizController : Controller
     {
+        [Route("{id}")]
+        public IActionResult Get(int id)
+        {
+            var v = new QuizViewModel
+            {
+                Id = id,
+                Title = String.Format("Sample quiz with id {0}", id),
+                Description = "Not a real quiz: it's just a sample!",
+                CreatedDate = DateTime.Now,
+                LastModifiedDate = DateTime.Now
+            };
+
+            return new JsonResult(v,
+              new JsonSerializerSettings()
+              {
+                  Formatting = Formatting.Indented
+              });
+        }
+
         [Route("Latest/{num}")]
         public IActionResult Latest(int num = 10)
         {
