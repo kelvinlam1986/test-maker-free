@@ -47,7 +47,7 @@ namespace TestMakerFreeApp.Controllers
             throw new NotImplementedException();
         }
 
-        [Route("Latest/{num}")]
+        [HttpGet("Latest/{num}")]
         public IActionResult Latest(int num = 10)
         {
             var sampleQuizzes = new List<QuizViewModel>();
