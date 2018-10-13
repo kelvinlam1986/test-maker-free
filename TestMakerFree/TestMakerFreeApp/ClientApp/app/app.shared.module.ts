@@ -11,7 +11,8 @@ import { QuizListComponent } from './components/quiz/quiz-list.component';
 import { QuizComponent } from './components/quiz/quiz.component';
 import { AboutComponent } from './components/about/about.component';
 import { LoginComponent } from './components/login/login.component';
-import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component'
+import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
+import { QuizEditComponent } from './components/quiz/quiz-edit.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.co
         QuizComponent,
         AboutComponent,
         LoginComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        QuizEditComponent
     ],
     imports: [
         CommonModule,
@@ -31,6 +33,8 @@ import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.co
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
+            { path: 'quiz/create', component: QuizEditComponent },
+            { path: 'quiz/edit/:id', component: QuizEditComponent },
             { path: 'quiz/:id', component: QuizComponent },
             { path: 'about', component: AboutComponent },
             { path: 'login', component: LoginComponent },
