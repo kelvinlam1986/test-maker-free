@@ -10,19 +10,16 @@ using TestMakerFreeApp.ViewModels;
 namespace TestMakerFreeApp.Controllers
 {
     [Route("api/[controller]")]
-    public class QuizController : Controller
+    public class QuizController : BaseApiController
     {
-        private ApplicationDbContext dbContext;
-
-        public QuizController(ApplicationDbContext dbContext)
+        public QuizController(ApplicationDbContext dbContext) : base(dbContext)
         {
-            this.dbContext = dbContext;
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var quiz = dbContext.Quizzes.Where(x => x.Id == id).FirstOrDefault();
+            var quiz = DbContext.Quizzes.Where(x => x.Id == id).FirstOrDefault();
 
             if (quiz == null)
             {
@@ -52,9 +49,9 @@ namespace TestMakerFreeApp.Controllers
 
             quiz.CreatedDate = DateTime.Now;
             quiz.LastModifiedDate = quiz.CreatedDate;
-            quiz.UserId = dbContext.Users.Where(x => x.UserName == "Admin").FirstOrDefault().Id;
-            dbContext.Quizzes.Add(quiz);
-            dbContext.SaveChanges();
+            quiz.UserId = DbContext.Users.Where(x => x.UserName == "Admin").FirstOrDefault().Id;
+            DbContext.Quizzes.Add(quiz);
+            DbContext.SaveChanges();
 
             return new JsonResult(quiz.Adapt<QuizViewModel>(),
                 new JsonSerializerSettings()
@@ -67,7 +64,7 @@ namespace TestMakerFreeApp.Controllers
         public IActionResult Put(int id, [FromBody]QuizViewModel model)
         {
             if (model == null) return new StatusCodeResult(500);
-            var quiz = dbContext.Quizzes.FirstOrDefault(x => x.Id == id);
+            var quiz = DbContext.Quizzes.FirstOrDefault(x => x.Id == id);
             if (quiz == null)
             {
                 return NotFound(new
@@ -80,9 +77,9 @@ namespace TestMakerFreeApp.Controllers
             quiz.Description = model.Description;
             quiz.Text = model.Text;
             quiz.Notes = model.Notes;
-            quiz.LastModifiedDate = quiz.LastModifiedDate;
-            quiz.UserId = dbContext.Users.Where(x => x.UserName == "Admin").FirstOrDefault().Id;
-            dbContext.SaveChanges();
+            quiz.LastModifiedDate = quiz.CreatedDate;
+            quiz.UserId = DbContext.Users.Where(x => x.UserName == "Admin").FirstOrDefault().Id;
+            DbContext.SaveChanges();
 
             return new JsonResult(quiz.Adapt<QuizViewModel>(),
                 new JsonSerializerSettings()
@@ -94,7 +91,7 @@ namespace TestMakerFreeApp.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var quiz = dbContext.Quizzes.FirstOrDefault(x => x.Id == id);
+            var quiz = DbContext.Quizzes.FirstOrDefault(x => x.Id == id);
             if (quiz == null)
             {
                 return NotFound(new
@@ -103,8 +100,8 @@ namespace TestMakerFreeApp.Controllers
                 });
             }
 
-            dbContext.Quizzes.Remove(quiz);
-            dbContext.SaveChanges();
+            DbContext.Quizzes.Remove(quiz);
+            DbContext.SaveChanges();
 
             return NoContent();
         }
@@ -112,7 +109,7 @@ namespace TestMakerFreeApp.Controllers
         [HttpGet("Latest/{num}")]
         public IActionResult Latest(int num = 10)
         {
-            var latest = dbContext.Quizzes
+            var latest = DbContext.Quizzes
                             .OrderByDescending(x => x.CreatedDate)
                             .Take(num)
                             .ToArray();
@@ -127,7 +124,7 @@ namespace TestMakerFreeApp.Controllers
         [Route("ByTitle/{num:int?}")]
         public IActionResult ByTitle(int num = 10)
         {
-            var byTitle = dbContext.Quizzes
+            var byTitle = DbContext.Quizzes
                             .OrderBy(x => x.Title)
                             .Take(num)
                             .ToArray();
@@ -143,7 +140,7 @@ namespace TestMakerFreeApp.Controllers
         [Route("Random/{num:int?}")]
         public IActionResult ByRandom(int num = 10)
         {
-            var random = dbContext.Quizzes
+            var random = DbContext.Quizzes
                             .OrderBy(x => Guid.NewGuid())
                             .Take(num)
                             .ToArray();
