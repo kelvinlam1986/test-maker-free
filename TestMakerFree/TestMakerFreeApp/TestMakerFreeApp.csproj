@@ -29,6 +29,8 @@
 
   <ItemGroup>
     <None Remove="ClientApp\app\components\about\about.component.ts" />
+    <None Remove="ClientApp\app\components\answer\answer-edit.component.ts" />
+    <None Remove="ClientApp\app\components\answer\answer-list.component.ts" />
     <None Remove="ClientApp\app\components\pagenotfound\pagenotfound.component.ts" />
     <None Remove="ClientApp\app\components\question\question-edit.component.ts" />
     <None Remove="ClientApp\app\components\question\question-list.component.ts" />
@@ -43,6 +45,8 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\about\about.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\answer\answer-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\answer\answer-list.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\pagenotfound\pagenotfound.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\question\question-edit.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\question\question-list.component.ts" />

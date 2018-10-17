@@ -11,4 +11,5 @@
         <input *ngIf="!editmode" type="button" value="Create the question" (click)="onSubmit(question)" />
         <input type="button" value="Cancel" (click)="onBack()" />
     </div>
+    <answer-list *ngIf="editmode" [question]="question"></answer-list>
 </div>

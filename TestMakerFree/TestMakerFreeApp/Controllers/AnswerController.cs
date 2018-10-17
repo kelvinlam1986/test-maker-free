@@ -36,7 +36,7 @@ namespace TestMakerFreeApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(AnswerViewModel model)
+        public IActionResult Post([FromBody] AnswerViewModel model)
         {
             if (model == null) return new StatusCodeResult(500);
             var answer = model.Adapt<Answer>();

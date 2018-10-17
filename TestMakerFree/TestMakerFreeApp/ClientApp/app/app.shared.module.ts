@@ -15,6 +15,8 @@ import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.co
 import { QuizEditComponent } from './components/quiz/quiz-edit.component';
 import { QuestionListComponent } from './components/question/question-list.component';
 import { QuestionEditComponent } from './components/question/question-edit.component';
+import { AnswerListComponent } from './components/answer/answer-list.component';
+import { AnswerEditComponent } from './components/answer/answer-edit.component';
 
 @NgModule({
     declarations: [
@@ -28,7 +30,9 @@ import { QuestionEditComponent } from './components/question/question-edit.compo
         PageNotFoundComponent,
         QuizEditComponent,
         QuestionListComponent,
-        QuestionEditComponent
+        QuestionEditComponent,
+        AnswerListComponent,
+        AnswerEditComponent
     ],
     imports: [
         CommonModule,
@@ -42,6 +46,8 @@ import { QuestionEditComponent } from './components/question/question-edit.compo
             { path: 'quiz/:id', component: QuizComponent },
             { path: 'question/create/:id', component: QuestionEditComponent },
             { path: 'question/edit/:id', component: QuestionEditComponent },
+            { path: 'answer/create/:id', component: AnswerEditComponent },
+            { path: 'answer/edit/:id', component: AnswerEditComponent },
             { path: 'about', component: AboutComponent },
             { path: 'login', component: LoginComponent },
             { path: '**', component: PageNotFoundComponent }
