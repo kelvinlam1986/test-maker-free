@@ -22,6 +22,7 @@ export class QuizEditComponent {
         this.quiz = <Quiz>{};
 
         var id = +this.activatedRoute.snapshot.params["id"];
+
         if (id) {
             this.editMode = true;
             var url = this.baseUrl + "api/quiz/" + id;
