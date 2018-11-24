@@ -36,7 +36,7 @@ namespace TestMakerFreeApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(ResultViewModel model)
+        public IActionResult Post([FromBody] ResultViewModel model)
         {
             if (model == null) return new StatusCodeResult(500);
             var result = model.Adapt<Result>();
@@ -99,6 +99,7 @@ namespace TestMakerFreeApp.Controllers
             return NoContent();
         }
 
+        [Route("All/{quizId}")]
         public IActionResult All(int quizId)
         {
             var results = DbContext.Results.Where(x => x.QuizId == quizId).ToArray();
